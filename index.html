@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+
+
+    <style>
+        .area-cookie{
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgb(235, 235, 235);
+            width: 20rem;
+            z-index: 100;
+            position: fixed;
+            box-shadow: 0 0 100px rgb(66, 66, 66);
+            left: 50%;
+            font-size: 12px;
+            bottom: 5rem;
+            transform: translateX(-50%);
+            border-radius: 2rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1{
+            margin-bottom:  1rem;
+        }
+        button{
+            border: none;
+            width: 100%;
+            height: 4rem;
+            color: white;
+            font-weight: bold;
+            transition: .5s;
+            font-size: 25px;
+        }
+        .btna{
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            background: rgb(48, 153, 252);
+        
+        }
+        .btnr{
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            background: rgb(241, 58, 58);
+        }
+        .btna:hover{
+            background: rgb(38, 126, 209);
+            cursor: pointer;
+        }
+        .btnr:hover{
+            background: rgb(207, 51, 51);
+            cursor: pointer;
+        }
+        .bg{
+            height: 100vh;
+            width: 100vw;
+            background: rgba(0, 0, 0, 0.589);
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+        #map{
+            z-index: 0;
+        }
+    </style>
+
+  </head>
+
+  <body style="border: 0; margin: 0;padding:0;overflow: hidden;">
+      
+    <div class="area-cookie">
+        <h1>Aceite os cookies para melhor desempenho</h1>
+        <button class="btna">Aceitar todos</button>
+        <button class="btnr">Recusar  todos</button>
+    </div>
+    <div id="map" style="width: 100%; height: 100%;"></div>
+    <div class="bg"></div>
+  </body>
+  <script type="text/javascript">
+    window.onload = function() {
+      L.mapquest.key = '6NMIbIx7z7gP6YngY3QFVodSIncf6W3U';
+
+      var map = L.mapquest.map('map', {
+          //-24.29019659422948, -47.00530697483668
+        center: [-24.29019659422948, -47.00530697483668],
+        layers: L.mapquest.tileLayer('map'),
+        zoom: 12
+
+      });
+
+      map.addControl(L.mapquest.control());
+    }
+    const btna = document.querySelector('.btna')
+    const btnr = document.querySelector('.btnr')
+    const bg = document.querySelector('.bg')
+    const body = document.querySelector('body')
+    const area = document.querySelector('.area-cookie')
+btna.addEventListener('click', function(event){ff(event)})
+btna.addEventListener('touchstart', function(event){ff(event)})
+btnr.addEventListener('click', function(event){ff(event)})
+btnr.addEventListener('touchstart', function(event){ff(event)})
+
+    function ff(event){
+        if(event.type === 'touchstart')event.preventDefault()
+        body.removeChild(bg)
+        body.removeChild(area)
+
+    }
+  </script>
+</html>
